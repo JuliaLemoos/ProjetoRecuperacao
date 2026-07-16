@@ -93,10 +93,6 @@
                                 <br>
                                 <select name="genero" id="fkGenero_lista">
                                     <option hidden selected> - Escolha uma opção - </option>
-                                    <option value="horror">Horror</option>
-                                    <option value="romance">Romance</option>
-                                    <option value="poesia">Poesia</option>
-                                    <option value="fantasia">Fantasia</option>
                                 </select>
                             </label>
 
@@ -110,7 +106,7 @@
                             <label>
                                 Quantidade de livros em estoque:
                                 <br>
-                                <input type="number" name="qtdLivro" id="qtdLivro" maxlength="20" type="Text"></input>
+                                <input type="number" name="qtdEstoque" id="qtdEstoque" maxlength="20" type="Text"></input>
                             </label>
 
                             <label>
@@ -144,8 +140,6 @@
 
 <script>
 
-
-
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
@@ -170,7 +164,7 @@
             titulo: form_postagem.titulo.value,
             fkGenero: form_postagem.fkGenero_lista.value,
             fkAutor: form_postagem.fkAutor_lista.value,
-            qtdEstoque: form_postagem.qtdLivro.value,
+            qtdEstoque: form_postagem.qtdEstoque.value,
             precoCompra: form_postagem.precoCompra.value,
             precoVenda: form_postagem.precoVenda.value
         }

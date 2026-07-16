@@ -6,6 +6,7 @@ function listar() {
         select 
 livro.id,
 livro.titulo,
+livro.qtdEstoque,
 livro.precoCompra,
 livro.precoVenda,
 autor.nome as nomeAutor,
@@ -16,12 +17,10 @@ genero.nome as nomeGenero
     return database.executar(instrucaoSql);
 }
 
-
-
-function cadastrar(titulo, fkAutor, fkGenero, precoCompra, precoVenda) {
+function cadastrar(titulo, fkAutor, fkGenero, qtdEstoque, precoCompra, precoVenda) {
 
     var instrucaoSql = `
-        INSERT INTO livro (titulo, fkAutor, fkGenero, precoCompra, precoVenda) VALUES ('${titulo}', '${fkAutor}', '${fkGenero}', '${precoCompra}', '${precoVenda}');
+        INSERT INTO livro (titulo, fkAutor, fkGenero, qtdEstoque, precoCompra, precoVenda) VALUES ('${titulo}', '${fkAutor}', '${fkGenero}', '${qtdEstoque}', '${precoCompra}', '${precoVenda}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
