@@ -27,7 +27,7 @@ CREATE TABLE livro (
     CONSTRAINT fk_livro_genero FOREIGN KEY (fkGenero) REFERENCES genero(id)
 );
 
-INSERT (nome) genero VALUES
+INSERT INTO (nome) genero VALUES
 ('Horror'),
 ('Romance'),
 ('Poesia'),
