@@ -145,20 +145,22 @@
     }
 
     function cadastrar() {
-        let precoCompra = precoCompra.value;
-        let genero = fkGenero_lista.value;
-        let precoVenda = precoVenda.value;
 
-        if (precoCompra >= 100 && (genero == 'horror' || genero == 'romance')) {
-            adicional = precoCompra * 0.225;
-            precoVenda = precoCompra + adicional;
-        } else if (precoCompra <= 50 && (genero == 'poesia' || genero == 'horror')) {
-            adicional = precoCompra * 0.25;
-            precoVenda = precoCompra + adicional;
-        } else if (precoCompra > 50 && precoCompra < 100 && (genero == 'fantasia')) {
-            adicional = precoCompra * 0.275;
-            precoVenda = precoCompra + adicional;
-        }
+        // VALIDAÇÃO COMENTADA PORQUE O POST DO LIVRO NÃO FUNCIONA COM ELA.
+        //let precoCompra = precoCompra.value;
+        //let genero = fkGenero_lista.value;
+        //let precoVenda = precoVenda.value;
+
+        //if (precoCompra >= 100 && (genero == 'horror' || genero == 'romance')) {
+        //   adicional = precoCompra * 0.225;
+        //    precoVenda = precoCompra + adicional;
+        //} else if (precoCompra <= 50 && (genero == 'poesia' || genero == 'horror')) {
+        //    adicional = precoCompra * 0.25;
+        //    precoVenda = precoCompra + adicional;
+        //} else if (precoCompra > 50 && precoCompra < 100 && (genero == 'fantasia')) {
+        //    adicional = precoCompra * 0.275;
+        //    precoVenda = precoCompra + adicional;
+        //}
 
         var corpo = {
             titulo: form_postagem.titulo.value,
