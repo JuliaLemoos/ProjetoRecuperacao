@@ -110,50 +110,59 @@
 </html>
 
 <script>
-    var caracteresProibidos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '@', '!', '#', '$', '%', '&', '*', '(', ')', '-', '_', '+', '=', '`'];
+    var caracteresProibidos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '@', '!', '#', '$', '%', '&', '*', ',', '-', '_', '+', '=', '`'];
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
 
+    let encontrou = 0;
     function cadastrar() {
         let nomeAutor = nome.value;
 
         for (let i = 0; i < nomeAutor.length; i++) {
             for (let j = 0; j < caracteresProibidos.length; j++) {
                 if (nomeAutor[i] == caracteresProibidos[j]) {
-                    alert('O nome do autor não pode conter caracteres númericos');
+                    encontrou++
+                    alert('O nome do autor não pode conter caracteres númericos e/ou especiais.');
                 }
             }
-        }
-        var corpo = {
-            nome: form_postagem.nome.value
-        }
-        fetch(`/autores/cadastrar`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(corpo)
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                window.alert("Post realizado com sucesso. Você será redirecionado ao Acervo.");
-                window.location = "/";
-                limparFormulario();
-
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            if (encontrou > 0) {
+                break;
             }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
+        }
 
-        });
+        if (encontrou == 0) {
 
-        return false;
+            var corpo = {
+                nome: form_postagem.nome.value
+            }
 
+            fetch(`/autores/cadastrar`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(corpo)
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    window.alert("Post realizado com sucesso. Você será redirecionado ao Acervo.");
+                    window.location = "/";
+                    limparFormulario();
+
+                } else if (resposta.status == 404) {
+                    window.alert("Deu 404!");
+                } else {
+                    throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+
+            });
+
+            return false;
+        }
     }
 </script>

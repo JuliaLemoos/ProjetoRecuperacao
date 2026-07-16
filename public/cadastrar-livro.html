@@ -108,6 +108,12 @@
                             </label>
 
                             <label>
+                                Quantidade de livros em estoque:
+                                <br>
+                                <input type="number" name="qtdLivro" id="qtdLivro" maxlength="20" type="Text"></input>
+                            </label>
+
+                            <label>
                                 Preço de Compra (R$):
                                 <br>
                                 <input name="precoCompra" id="precoCompra" maxlength="20" type="Text"></input>
@@ -145,10 +151,26 @@
     }
 
     function cadastrar() {
+        let precoCompra = precoCompra.value;
+        let genero = fkGenero_lista.value;
+        let precoVenda = precoVenda.value;
+
+        if (precoCompra >= 100 && (genero == 'horror' || genero == 'romance')) {
+            adicional = precoCompra * 0.225;
+            precoVenda = precoCompra + adicional;
+        } else if (precoCompra <= 50 && (genero == 'poesia' || genero == 'horror')) {
+            adicional = precoCompra * 0.25;
+            precoVenda = precoCompra + adicional;
+        } else if (precoCompra > 50 && precoCompra < 100 && (genero == 'fantasia')) {
+            adicional = precoCompra * 0.275;
+            precoVenda = precoCompra + adicional;
+        }
+
         var corpo = {
             titulo: form_postagem.titulo.value,
             fkGenero: form_postagem.fkGenero_lista.value,
             fkAutor: form_postagem.fkAutor_lista.value,
+            qtdEstoque: form_postagem.qtdLivro.value,
             precoCompra: form_postagem.precoCompra.value,
             precoVenda: form_postagem.precoVenda.value
         }
@@ -262,8 +284,4 @@
 
         });
     }
-
-
-    
-
 </script>
